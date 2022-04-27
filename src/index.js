@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavouriteMoviesPage from "./pages/favoriteMoviesPage"; // NEW
@@ -11,17 +11,17 @@ const App = () => {
   return (
     <BrowserRouter>
               <SiteHeader />      {/* New Header  */}
-      <Switch>
-        <Route path="/reviews/:id" component={MovieReviewPage} />
+      <Routes>
+        <Route path="/reviews/:id" element={<MovieReviewPage/>} />
         <Route
-          exact
+          
           path="/movies/favourites"
-          component={FavouriteMoviesPage}
+          element={<FavouriteMoviesPage/>}
         />
-        <Route path="/movies/:id" component={MoviePage} />
-        <Route exact path="/" component={HomePage} />
-        <Redirect from="*" to="/" />
-      </Switch>
+        <Route path="/movies/:id" element={<MoviePage/>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </BrowserRouter>
   );
 };

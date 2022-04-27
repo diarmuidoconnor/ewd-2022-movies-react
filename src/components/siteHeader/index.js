@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SiteHeader = () => {
   const classes = useStyles();
-  const  history = useHistory()
+  const  navigate = useNavigate()
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const theme = useTheme();
@@ -39,7 +39,7 @@ const SiteHeader = () => {
   ];
 
   const handleMenuSelect = (pageURL) => {
-    history.push(pageURL);
+    navigate(pageURL);
   };
 
   const handleMenu = (event) => {

@@ -47,12 +47,10 @@ export default function MovieReviews({ movie }) {
               <TableCell>{excerpt(r.content)}</TableCell>
               <TableCell>
                 <Link
-                  to={{
-                    pathname: `/reviews/${r.id}`,
-                    state: {
-                      review: r,
-                      movie: movie,
-                    },
+                  to={`/reviews/${r.id}`}
+                  state={{
+                    review: r,
+                    movie: movie,
                   }}
                 >
                   Full Review
