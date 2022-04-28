@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -20,7 +20,17 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     // background: 'none',
   },
-  // offset: theme.mixins.toolbar,
+  inactiveLink: {
+    color: 'white',
+    padding : theme.spacing(1),
+    fontSize: '1.5rem'
+  },
+  activeLink: {
+    color: 'black',
+    padding : theme.spacing(1),
+    fontSize: '1.5rem',
+    background: "#bfbfbf"
+  }
 }));
 
 const SiteHeader = () => {
@@ -97,13 +107,17 @@ const SiteHeader = () => {
           ) : (
             <>
               {menuOptions.map((opt) => (
-                <Button
+                <NavLink
                   key={opt.label}
+                  to={opt.path}
+                  className={({ isActive }) =>
+                  isActive ? classes.activeLink : classes.inactiveLink
+                }
                   color="inherit"
-                  onClick={() => handleMenuSelect(opt.path)}
+                  // onClick={() => handleMenuSelect(opt.path)}
                 >
                   {opt.label}
-                </Button>
+                </NavLink>
               ))}
             </>
           )}
